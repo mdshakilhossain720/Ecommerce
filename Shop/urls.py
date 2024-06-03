@@ -1,6 +1,6 @@
 from django.urls import path
 from Shop import views
-from . forms import LoginForm
+from . forms import LoginForm,MyPasswordChange
 from django.contrib .auth import views as auth_view
 urlpatterns = [
     path('', views.ProductView.as_view(),name='home'),
@@ -10,7 +10,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('address/', views.address, name='address'),
     path('orders/', views.orders, name='orders'),
-    path('changepassword/', views.change_password, name='changepassword'),
+    path('changepassword/',auth_view.PasswordChangeForm.as_View(template_name='shop/passwordchange.html',form_class=MyPasswordChange),name='changepassword'),
     path('lehenga/', views.lehenga, name='lehenga'),
     path('lehenga/<slug:data>/', views.lehenga, name='lehengaitem'),
     # path('login/', views.login, name='login'),
